@@ -1,0 +1,14 @@
+h6{
+    color: red;
+    font-size: xx-large;
+    text-align: right;
+    border: 5px solid blue;
+    background-color: yellowgreen;
+}
+#id1{
+    color: aqua;
+}
+#idp1{
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
