@@ -27,6 +27,15 @@ function App() {
         </Button>
         <Button
           onClick={() => {
+            setCount(0);
+          }}
+          id="btreset"
+          variant="contained"
+        >
+          Reset
+        </Button>
+        <Button
+          onClick={() => {
             setCount(++count);
           }}
           id="btplus"
