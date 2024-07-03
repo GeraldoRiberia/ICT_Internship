@@ -21,7 +21,7 @@ const StateBasic = () => {
       <TextField onChange={(e)=>{
         setTemp(e.target.value)
       }}></TextField><br /> <br />
-      <Button onClick={()=>{
+      <Button id='EnterButton'onClick={()=>{
         setName(temp)
       }} variant='contained'>Enter</Button>
     </div>

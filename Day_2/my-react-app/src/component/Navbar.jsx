@@ -30,6 +30,26 @@ const Navbar = () => {
                     Table
                     </Link>
                 </Button>
+                <Button>
+                    <Link style={{textDecoration:'none',color:'white'}} to={'/n'}>
+                    StateBasic
+                    </Link>
+                </Button>
+                <Button>
+                    <Link style={{textDecoration:'none',color:'white'}} to={'/f'}>
+                    FormBasics
+                    </Link>
+                </Button>
+                <Button>
+                    <Link style={{textDecoration:'none',color:'white'}} to={'/a'}>
+                    ApiGet
+                    </Link>
+                </Button>
+                <Button>
+                    <Link style={{textDecoration:'none',color:'white'}} to={'/j'}>
+                    Jewelery
+                    </Link>
+                </Button>
                 </Toolbar>
             </AppBar>
         </Box>

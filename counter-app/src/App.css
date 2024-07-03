@@ -7,7 +7,7 @@
 
 #header{
     font-family: monospace;
-    transition: text-shadow,background-color, 800ms;
+    transition: text-shadow, 800ms;
 }
 #header:hover {
     text-shadow: 0px 10px 30px dimgrey;
