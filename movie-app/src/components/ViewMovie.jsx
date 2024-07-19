@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './ViewMovie.css'
-import { Grid, Card,CardMedia,CardContent, Typography , CardActions, Button} from '@mui/material';
+import { Grid, Card,CardMedia,CardContent, Typography } from '@mui/material';
 const ViewMovie = () => {
   var[movieData, setMovieData] = useState([]);
   useEffect(()=>{
     axios.get('https://api.andrespecht.dev/movies').then((res)=>{
-      console.log(res.data.response)
+      // console.log(res.data.response)
       setMovieData(res.data.response)
     }).catch((error)=>{
       console.error(error)
@@ -17,8 +17,7 @@ const ViewMovie = () => {
       <Grid className='MovieGrid'container spacing={2}>
         {movieData.map((value)=>{
           return(
-            // eslint-disable-next-line react/jsx-key
-            <Grid item xs={8} md={4}>
+            <Grid key={value.id}item xs={8} md={4}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   sx={{ height: 140 }}
@@ -31,7 +30,7 @@ const ViewMovie = () => {
                   {/* <Typography variant="body2" color="text.secondary"> */}
                     {value.genre.map((genre)=>{
                       return(
-                        <Typography  variant="body2">
+                        <Typography key={genre.id} variant="body2">
                           {genre}
                         </Typography>
                       )
