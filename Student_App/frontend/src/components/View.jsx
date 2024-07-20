@@ -1,11 +1,13 @@
 import { TextField, Grid, Button, Card, CardContent, Typography, CardActions } from "@mui/material"
-import {useState } from "react"
+import {useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
+
 const View = () => {
+  var navigate = useNavigate();
   var[stdData, setStdData] = useState([])
-   
-  useState (()=>{
+  useEffect (()=>{
     axios.get('http://localhost:3000/view').then((response)=>{
     console.log(response);
     setStdData(response.data);
@@ -13,13 +15,20 @@ const View = () => {
       console.log(error)
     })
   },[])
+
   const deleteStudent = (id)=>{
     console.log(id)
-    axios.delete("http://localhost:3000/remove"+id).then((response)=>{
+    axios.delete('http://localhost:3000/remove/'+id).then((response)=>{
     console.log(response);
+    window.location.reload(true);
     }).catch((error)=>{
       console.log(error);
     })
+  }
+
+  const clickUpdate = (data)=>{
+    navigate('/add', {state :{val : data}})
+    console.log(data);
   }
   return (
     <div>
@@ -42,8 +51,9 @@ const View = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small"><Link style={{textDecoration:'none', color:'teal'}} to={'/add'}>Edit</Link></Button>
-                <Button size="small" onClick={()=>{deleteStudent(data.rollno)}}>Delete</Button>
+                <Button onClick={()=>{clickUpdate(data)}} size="small"><Link style={{textDecoration:'none', color:'teal'}}>Edit</Link></Button>
+                <Button size="small" onClick={()=>{deleteStudent(data._id)}
+              }>Delete</Button>
               </CardActions>
             </Card>
             </Grid>

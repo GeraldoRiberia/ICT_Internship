@@ -35,6 +35,16 @@ app.delete('/remove/:id', async(req,res)=>{
         console.log(error);
     }
 })
+app.put('/edit/:filter',async(req,res)=>{
+    filter = req.params.filter
+    console.log(req.body)
+    try {
+        await model.findByIdAndUpdate(filter,req.body)
+        res.send("Updated Succesfully!")
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 app.listen(3000, ()=>{
     console.log("port is up and running");

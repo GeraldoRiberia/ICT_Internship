@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 var std = mongoose.Schema({
     name : String,
-    rollno : Number,
+    rollno : String,
     class : String,
     department : String
 });

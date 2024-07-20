@@ -1,22 +1,43 @@
 import { TextField, Grid, Button } from "@mui/material"
 import './Add.css'
-import {  useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import {  useEffect, useState } from "react"
 import axios from "axios"
-const Add = () => {
-    var[studentData, setStudentData] = useState({name:"", rollno :null, class :"", department : ""})
+const Add = (props) => {
+    var navigate = useNavigate();
+    var location = useLocation();
+    var updtBody = location.state.val
+    useEffect(()=>{
+        if(updtBody != null){
+          setStudentData({...studentData,name: updtBody.name, rollno:updtBody.rollno, class : updtBody.class, department: updtBody.department})
+        }
+    },[])
+
+    var[studentData, setStudentData] = useState({name:"", rollno :"", class :"", department : ""})
     const inputHandler = (r)=>{
         console.log(r)
         setStudentData({...studentData,[r.target.name]:r.target.value})
 
     }
     const setSubmit = ()=>{
-      console.log(studentData);
-        axios.post('http://localhost:3000/add',studentData).then((res)=>{
-        console.log(res.data)
-        }).catch((error)=>{
-          console.log(error);
-        })
-    }
+        console.log(studentData);
+        if(updtBody != null){
+          axios.put('http://localhost:3000/edit/'+updtBody._id,studentData).then((res)=>{
+            console.log(res.data)
+            
+          }).catch((error)=>{
+              console.log(error);
+          })
+        }
+        else{
+          axios.put('http://localhost:3000/add',studentData).then((res)=>{
+            console.log(res.data)
+          }).catch((error)=>{
+            console.log(error);
+          })
+        }
+        navigate('/view')
+        }
     
 
   return (
