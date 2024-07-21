@@ -1,8 +1,10 @@
-import { TextField, Grid, Button, Card, CardContent, Typography, CardActions } from "@mui/material"
+import { Grid, Button, Card, CardContent, Typography, CardActions, Box } from "@mui/material"
 import {useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { red } from "@mui/material/colors"
+import "./View.css"
 
 const View = () => {
   var navigate = useNavigate();
@@ -14,7 +16,7 @@ const View = () => {
     }).catch((error)=>{
       console.log(error)
     })
-  },[])
+  },[])  //variable in the dependency array will run the hook everytime the variable changes
 
   const deleteStudent = (id)=>{
     console.log(id)
@@ -31,12 +33,12 @@ const View = () => {
     console.log(data);
   }
   return (
-    <div>
+    <div id="viewBackground">
       <br />
-      <Grid justifyContent={"center"} container spacing={2}>
+      <Grid justifyContent={"flex-start"} container spacing={2}>
         {stdData.map((data)=>{
           return(
-            <Grid key = {data.id} item xs={6} md={8}>
+            <Grid key = {data.id} item xs={6} md={3}>
               <Card sx={{flexGrow:1}}>
               <CardContent>
                 <Typography variant="h5" component="div">
@@ -51,12 +53,12 @@ const View = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button onClick={()=>{clickUpdate(data)}} size="small"><Link style={{textDecoration:'none', color:'teal'}}>Edit</Link></Button>
-                <Button size="small" onClick={()=>{deleteStudent(data._id)}
-              }>Delete</Button>
+                <Button id ="editButton" onClick={()=>{clickUpdate(data)}} variant="contained" size="small">Edit</Button>
+                <Button size="small" onClick={()=>{deleteStudent(data._id)}} variant="contained" id="deleteButton">Delete</Button>
               </CardActions>
             </Card>
             </Grid>
+            
           )
         })}
       </Grid>

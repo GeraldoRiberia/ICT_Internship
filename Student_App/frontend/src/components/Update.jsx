@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 const Update = () => {
-    var[studentData, setStudentData] = useState({name:"", rollno :null, class :"", department : ""})
+    var[studentData, setStudentData] = useState({name:"", rollno :"", class :"", department : ""})
     const inputHandler = (r)=>{
         console.log(r)
         setStudentData({...studentData,[r.target.name]:r.target.value})

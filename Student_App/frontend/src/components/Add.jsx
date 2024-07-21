@@ -3,13 +3,13 @@ import './Add.css'
 import { useLocation, useNavigate } from "react-router-dom"
 import {  useEffect, useState } from "react"
 import axios from "axios"
-const Add = (props) => {
+const Add = () => {
     var navigate = useNavigate();
     var location = useLocation();
-    var updtBody = location.state.val
+    console.log(location.state)
     useEffect(()=>{
-        if(updtBody != null){
-          setStudentData({...studentData,name: updtBody.name, rollno:updtBody.rollno, class : updtBody.class, department: updtBody.department})
+        if(location.state != null){
+          setStudentData({...studentData,name: location.state.val.name, rollno:location.state.val.rollno, class : location.state.val.class, department: location.state.val.department})
         }
     },[])
 
@@ -20,9 +20,8 @@ const Add = (props) => {
 
     }
     const setSubmit = ()=>{
-        console.log(studentData);
-        if(updtBody != null){
-          axios.put('http://localhost:3000/edit/'+updtBody._id,studentData).then((res)=>{
+        if(location.state != null){
+          axios.put('http://localhost:3000/edit/'+location.state.val._id,studentData).then((res)=>{
             console.log(res.data)
             
           }).catch((error)=>{
@@ -30,7 +29,8 @@ const Add = (props) => {
           })
         }
         else{
-          axios.put('http://localhost:3000/add',studentData).then((res)=>{
+          console.log(studentData)
+          axios.post('http://localhost:3000/add',studentData).then((res)=>{
             console.log(res.data)
           }).catch((error)=>{
             console.log(error);
@@ -39,7 +39,6 @@ const Add = (props) => {
         navigate('/view')
         }
     
-
   return (
     <div>
         <div className="divadd">
@@ -54,7 +53,7 @@ const Add = (props) => {
             onChange={inputHandler} name='class' value = {(studentData.class)}/><br /> <br />
             <TextField required fullWidth variant='outlined' label='Department'
             onChange={inputHandler} name='department' value = {(studentData.department)}/><br /> <br />
-            <Button style={{marginTop:'10%'} }fullWidth className ='submitButton' variant="contained" onClick={setSubmit}>Submit</Button>
+            <Button style={{marginTop:'10%'} }fullWidth id ='submitButton' variant="contained" onClick={setSubmit}>Submit</Button>
         </Grid>
         </Grid>
         </div>

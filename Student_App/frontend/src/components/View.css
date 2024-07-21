@@ -1,0 +1,24 @@
+
+#viewBackground{
+    
+}
+
+#deleteButton{
+    background-color: rgb(138, 1, 1);
+    transition: flex-grow,background-color, 200ms;
+}
+
+#deleteButton:active {
+    background-color:color-mix(in lch, rgba(152, 0, 0, 0.375) 50%, rgba(96, 0, 0, 0.758) 50%);
+    flex-grow: 0.3;
+}
+
+#editButton{
+    background-color: slategrey;
+    transition: flex-grow,background-color, 200ms;
+}
+
+#editButton:active{
+    background-color:color-mix(in lch, rgb(89, 103, 117) 50%, rgb(75, 86, 97) 50%);
+    flex-grow: 0.3;
+}
